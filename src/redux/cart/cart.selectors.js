@@ -12,6 +12,11 @@ export const selectCartItems = createSelector(
   cart => cart.cartItems
 )
 
+export const selectCartHidden = createSelector(
+  [selectCart],
+  cart => cart.hidden
+)
+
 // if multiple reselect
 // export const selectCartItems = createSelector(
 //   [selectCart, selectCart2],
