@@ -12,6 +12,8 @@ const config = {
   appId: '1:322967410072:web:bf4a87bdc4e7e2d5',
 }
 
+firebase.initializeApp(config)
+
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return
 
@@ -33,7 +35,17 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef
 }
 
-firebase.initializeApp(config)
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+  const collectionRef = firestore.collection(collectionKey)
+
+  const batch = firestore.batch()
+
+  objectsToAdd.forEach(obj => {
+    const newDocRef = collectionRef.doc()
+    batch.set(newDocRef, obj)
+  })
+  return await batch.commit()
+}
 
 // for GoogleAuth => https://firebase.google.com/docs/reference/js/firebase.auth.GoogleAuthProvider.html#setcustomparameters
 export const auth = firebase.auth()
