@@ -56,7 +56,7 @@ export const CustomButtonContainer = styled.button`
   display: flex;
   justify-content: center;
   ${props => {
-    console.log('props', props)
+    // console.log('props', props)
   }}
   ${getButtonStyles}
 `
