@@ -63,7 +63,7 @@ export const convertCollectionsSnapshotToMap = collections => {
     acc[collection.title.toLowerCase()] = collection
     return acc
   }, {})
-  console.log('transform', transformedCollections)
+  return transformedCollections
 }
 
 // for GoogleAuth => https://firebase.google.com/docs/reference/js/firebase.auth.GoogleAuthProvider.html#setcustomparameters

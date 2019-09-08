@@ -34,15 +34,11 @@ class ShopPage extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  collection: 'abc',
-})
-
 const mapDispatchToProps = dispatch => ({
   updateCollection: collectionsMap => dispatch(updateCollections(collectionsMap)),
 })
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(ShopPage)
