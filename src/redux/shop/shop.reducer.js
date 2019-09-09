@@ -16,7 +16,15 @@ const shopReducer = (state = INITIAL_STATE, action) => {
     case ShopActionTypes.FETCH_COLLECTIONS_SUCCESS:
       return {
         ...state,
-        collections: action.payload,
+        collections: action.payload.reduce(
+          (acc, collection) => ({
+            ...acc,
+            [collection.routeName]: {
+              ...collection,
+            },
+          }),
+          {}
+        ),
         isFetching: false,
       }
     case ShopActionTypes.FETCH_COLLECTIONS_FAILURE:
