@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
 import { selectCurrentUser } from './redux/user/user.selectors'
+import { checkUserSession } from './redux/user/user.actions'
 
 import './App.css'
 import HomePage from './pages/homepage/homepage.component'
@@ -24,21 +25,8 @@ class App extends React.Component {
   unsubscribeFromAuth = null
 
   componentDidMount() {
-    // check if user still signed in
-    // this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-    //   if (userAuth) {
-    //     const userRef = await createUserProfileDocument(userAuth)
-
-    //     userRef.onSnapshot(snapShot => {
-    //       setCurrentUser({
-    //         id: snapShot.id,
-    //         ...snapShot.data(),
-    //       })
-    //     })
-    //   } else {
-    //     setCurrentUser(userAuth)
-    //   }
-    // })
+    const { checkUserSession } = this.props
+    checkUserSession()
   }
 
   componentWillUnmount() {
@@ -69,7 +57,12 @@ const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
 })
 
+const mapDispatchToProps = dispatch => ({
+  checkUserSession: () => dispatch(checkUserSession())
+})
+
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(App)
