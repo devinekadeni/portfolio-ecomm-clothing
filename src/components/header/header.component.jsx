@@ -8,7 +8,7 @@ import CardDropdown from '../cart-dropdown/cart-dropdown.component'
 import { selectCartHidden } from '../../redux/cart/cart.selectors'
 import { selectCurrentUser } from '../../redux/user/user.selectors'
 import CurrentUserContext from '../../contexts/current-user/current-user.context'
-import CartContext from '../../contexts/cart/cart.context'
+import { CartContext } from '../../providers/cart/cart.provider'
 
 import { ReactComponent as Logo } from '../../assets/crown.svg'
 
@@ -21,8 +21,7 @@ import {
 
 const Header = () => {
   const currentUser = useContext(CurrentUserContext)
-  const [hidden, selectCartHidden] = useState(true)
-  const toggleHidden = () => selectCartHidden(!hidden)
+  const { hidden } = useContext(CartContext)
 
   return (
     <HeaderContainer>
@@ -39,14 +38,7 @@ const Header = () => {
         ) : (
           <OptionLink to="/signin">SIGN IN</OptionLink>
         )}
-        <CartContext.Provider
-          value={{
-            hidden,
-            toggleHidden,
-          }}
-        >
-          <CartIcon />
-        </CartContext.Provider>
+        <CartIcon />
       </OptionsContainer>
       {!hidden && <CardDropdown />}
     </HeaderContainer>
