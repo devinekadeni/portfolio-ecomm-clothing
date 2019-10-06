@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { connect } from 'react-redux'
 import { createStructuredSelector } from 'reselect'
 
@@ -7,6 +7,7 @@ import CartIcon from '../cart-icon/cart-icon.component'
 import CardDropdown from '../cart-dropdown/cart-dropdown.component'
 import { selectCartHidden } from '../../redux/cart/cart.selectors'
 import { selectCurrentUser } from '../../redux/user/user.selectors'
+import CurrentUserContext from '../../contexts/current-user/current-user.context'
 
 import { ReactComponent as Logo } from '../../assets/crown.svg'
 
@@ -17,7 +18,9 @@ import {
   OptionLink,
 } from './header.styles'
 
-const Header = ({ currentUser, hidden }) => {
+const Header = ({ hidden }) => {
+  const currentUser = useContext(CurrentUserContext)
+
   return (
     <HeaderContainer>
       <LogoContainer to="/">
