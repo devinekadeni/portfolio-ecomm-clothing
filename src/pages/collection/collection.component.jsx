@@ -1,7 +1,5 @@
 import React, { useContext } from 'react'
-import { connect } from 'react-redux'
 
-import { selectCollection } from '../../redux/shop/shop.selectors'
 import CollectionItem from '../../components/collection-item/collection-item.component'
 
 import CollectionsContext from '../../contexts/collections/collections.context'
@@ -48,9 +46,5 @@ const CollectionPage = ({ match }) => {
   )
   // Context Hooks Way - FINISH
 }
-
-const mapStateToProps = (state, ownProps) => ({
-  collection: selectCollection(ownProps.match.params.categoryId)(state),
-})
 
 export default CollectionPage
