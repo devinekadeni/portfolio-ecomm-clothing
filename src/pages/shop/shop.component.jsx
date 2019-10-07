@@ -1,10 +1,8 @@
 import React from 'react'
-import { connect } from 'react-redux'
-
 import { Route } from 'react-router-dom'
 
-import CollectionsOverview from '../../components/collections-overview/collections-overview.component'
-import CollectionPage from '../collection/collection.component'
+import CollectionsOverview from '../../components/collections-overview/collections-overview.container'
+import CollectionPage from '../collection/collection.container'
 
 const ShopPage = ({ match, collection }) => {
   return (
@@ -15,13 +13,4 @@ const ShopPage = ({ match, collection }) => {
   )
 }
 
-const mapStateToProps = state => ({
-  collection: 'abc',
-})
-
-const mapDispatchToProps = dispatch => ({})
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ShopPage)
+export default ShopPage
