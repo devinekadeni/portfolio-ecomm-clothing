@@ -12,13 +12,13 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 const app = express()
 const port = process.env.PORT || 5000
 
-app.use(compression())
 app.use(bodyParser.json()) // any request coming in, transfer all body into JSON
 app.use(bodyParser.urlencoded({ extended: true })) // url string doesn't contain space, etc
 
 app.use(cors())
 
 if (process.env.NODE_ENV === 'production') {
+  app.use(compression())
   app.use(enforce.HTTPS({ trustProtoHeader: true }))
   /**
    *  will be able to server every files on below (path.join(__dirname, 'client/build')
